@@ -77,7 +77,7 @@ static HashTable *php_ds_set_get_gc(zval *obj, zval **gc_data, int *gc_count)
 
     } else {
         *gc_data  = (zval*) set->table->buckets;
-        *gc_count = (int)   set->table->next * 2;
+        *gc_count = (int)   set->table->next - 1;
     }
 
     return NULL;
@@ -87,7 +87,7 @@ void php_ds_register_set_handlers()
 {
     memcpy(&php_ds_set_handlers, zend_get_std_object_handlers(), sizeof(zend_object_handlers));
 
-    php_ds_set_handlers.offset = 0; // XtOffsetOf(php_ds_set_t, std);
+    php_ds_set_handlers.offset = 0;
 
     php_ds_set_handlers.cast_object     = php_ds_default_cast_object;
     php_ds_set_handlers.clone_obj       = php_ds_set_clone_obj;

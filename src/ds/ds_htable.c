@@ -29,16 +29,19 @@ static inline ds_htable_bucket_t *ds_htable_allocate_buckets(uint32_t capacity)
 
 static inline ds_htable_bucket_t *ds_htable_reallocate_buckets(ds_htable_t *table, uint32_t capacity)
 {
+    // TODO safe_erealloc? memset to null?
     return erealloc(table->buckets, capacity * sizeof(ds_htable_bucket_t));
 }
 
 static inline uint32_t *ds_htable_allocate_lookup(uint32_t capacity)
 {
+    // TODO ecalloc ?
     return emalloc(capacity * sizeof(uint32_t));
 }
 
 static inline uint32_t *ds_htable_reallocate_lookup(uint32_t *lookup, uint32_t capacity)
 {
+    // TODO safe_erealloc?
     return erealloc(lookup, capacity * sizeof(uint32_t));
 }
 
